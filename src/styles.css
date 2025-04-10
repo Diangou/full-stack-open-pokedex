@@ -36,30 +36,107 @@ footer {
   }
 }
 
+
 .list-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px;
+
+  /* Superposition : motif + fond animé */
+  background-image: 
+    url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png'),
+    linear-gradient(-45deg, #d72638, #f8b500, #ff6f61, #d72638);
+
+  background-repeat: repeat, repeat, repeat, repeat;
+  background-position: 
+    0 0, 
+    50px 50px, 
+    100px 100px, 
+    center;
+    
+  background-size: 
+    80px, 
+    80px, 
+    80px, 
+    400% 400%;
+
+  animation: backgroundShift 12s ease infinite;
+
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 203, 5, 0.3);
+  position: relative;
+  z-index: 1;
+  opacity: 0.97;
 }
+
+@keyframes backgroundShift {
+  0% {
+    background-position: 
+      0 0, 
+      50px 50px, 
+      100px 100px, 
+      0% 50%;
+  }
+  50% {
+    background-position: 
+      20px 20px, 
+      70px 70px, 
+      120px 120px, 
+      100% 50%;
+  }
+  100% {
+    background-position: 
+      0 0, 
+      50px 50px, 
+      100px 100px, 
+      0% 50%;
+  }
+}
+
 
 .list-item {
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #eee;
-  margin: 10px;
-  height: 150px;
-  width: 150px;
+  background-color: #f9b193; /* Fond clair de base */
+  margin: 15px;
+  height: 200px;
+  width: 200px;
   position: relative;
+  border-radius: 15px; /* Coins arrondis pour un look plus doux */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Ombre douce */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color
+}
+.list-item:hover {
+  transform: scale(1.05); /* Agrandissement léger de l'élément lors du hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombre plus forte lors du hover */
+  background-color: rgba(255, 149, 74, 0.8); /* Légère brillance du fond au survol */
 }
 
 .list-item-name {
   position: absolute;
-  color: #000;
   bottom: 0;
+  left: 0;
   width: 100%;
+  padding: 8px 0;
   text-align: center;
   text-transform: capitalize;
-  background-color: #eee;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond sombre semi-transparent */
+  color: #fff; /* Texte blanc pour contraster avec le fond sombre */
+  font-size: 14px;
+  font-weight: 600; /* Un peu de poids pour le texte */
+  letter-spacing: 1px; /* Espacement des lettres pour un meilleur rendu */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Légère ombre portée pour le texte */
 }
+
+.list-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Assure que l'image couvre toute la surface sans être déformée */
+}
+
 
 .links {
   display: flex;
