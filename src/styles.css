@@ -1,8 +1,47 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300,700');
 
 html, body {
-  height: 100%;
-  margin: 0;
+  height: 100%; /* Prend toute la hauteur de la fenêtre */
+  margin: 0; /* Enlève la marge par défaut du body */
+  background-image: 
+  url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png'),
+  linear-gradient(-45deg, #d72638, #f8b500, #ff6f61, #d72638);
+background-repeat: repeat, repeat, repeat, repeat;
+background-position: 
+  0 0, 
+  50px 50px, 
+  100px 100px, 
+  center;
+background-size: 
+  80px, 
+  80px, 
+  80px, 
+  400% 400%;
+animation: backgroundShift 12s ease infinite; /* Animation appliquée ici */
+}
+
+@keyframes backgroundShift {
+0% {
+  background-position: 
+    0 0, 
+    50px 50px, 
+    100px 100px, 
+    0% 50%;
+}
+50% {
+  background-position: 
+    20px 20px, 
+    70px 70px, 
+    120px 120px, 
+    100% 50%;
+}
+100% {
+  background-position: 
+    0 0, 
+    50px 50px, 
+    100px 100px, 
+    0% 50%;
+}
 }
 
 body {
@@ -43,58 +82,12 @@ footer {
   justify-content: space-between;
   gap: 15px;
   padding: 20px;
-
-  /* Superposition : motif + fond animé */
-  background-image: 
-    url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png'),
-    linear-gradient(-45deg, #d72638, #f8b500, #ff6f61, #d72638);
-
-  background-repeat: repeat, repeat, repeat, repeat;
-  background-position: 
-    0 0, 
-    50px 50px, 
-    100px 100px, 
-    center;
-    
-  background-size: 
-    80px, 
-    80px, 
-    80px, 
-    400% 400%;
-
-  animation: backgroundShift 12s ease infinite;
-
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(255, 203, 5, 0.3);
   position: relative;
   z-index: 1;
   opacity: 0.97;
 }
-
-@keyframes backgroundShift {
-  0% {
-    background-position: 
-      0 0, 
-      50px 50px, 
-      100px 100px, 
-      0% 50%;
-  }
-  50% {
-    background-position: 
-      20px 20px, 
-      70px 70px, 
-      120px 120px, 
-      100% 50%;
-  }
-  100% {
-    background-position: 
-      0 0, 
-      50px 50px, 
-      100px 100px, 
-      0% 50%;
-  }
-}
-
 
 .list-item {
   background-position: center;
@@ -138,22 +131,82 @@ footer {
 }
 
 
-.links {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  text-decoration: none;
-  width: 332px;
+/* Réponsive Design pour différentes tailles d'écran */
+@media (max-width: 768px) {
+  .list-container {
+    padding: 10px;
+  }
+  
+  .list-item {
+    width: 160px; /* Réduit la taille des éléments sur des écrans plus petits */
+    height: 160px;
+  }
 }
 
+@media (max-width: 480px) {
+  .list-container {
+    justify-content: center;
+  }
+  .list-item {
+    width: 140px; /* Réduit encore la taille pour les très petits écrans */
+    height: 140px;
+  }
+}
+
+/* Style pour la barre de navigation des liens */
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* Espacement un peu plus large entre les liens */
+  margin-bottom: 20px;
+}
+
+/* Style pour chaque lien */
+.links a {
+  margin-top: 70px;
+  text-decoration: none;
+  color: #fff; /* Texte blanc pour une bonne lisibilité */
+  font-size: 18px; /* Taille de police plus grande pour plus de lisibilité */
+  font-weight: 700; /* Poids de police plus lourd pour les rendre plus visibles */
+  padding: 12px 24px; /* Espacement interne plus généreux */
+  border-radius: 30px; /* Coins arrondis pour un effet plus doux */
+  background: linear-gradient(45deg, #ff6f61, #f8b500); /* Dégradé coloré */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre douce pour ajouter de la profondeur */
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  text-transform: uppercase; /* Mettre le texte en majuscules pour le rendre plus "bouton" */
+  letter-spacing: 1px; /* Espacement des lettres pour une meilleure lisibilité */
+}
+
+/* Effet au survol pour chaque lien */
+.links a:hover {
+  background: linear-gradient(45deg, #f8b500, #ff6f61); /* Inverser les couleurs du dégradé pour un effet visuel */
+  transform: scale(1.05); /* Légère agrandissement au survol */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Ombre plus prononcée */
+}
+
+/* Style spécifique pour le lien 'Home' */
+.links a:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 203, 5, 0.7); /* Ajout d'une légère ombre au focus */
+}
+
+/* Style pour la page Pokémon */
 .pokemon-page {
   background: linear-gradient(140deg, var(--pokemon-type-color) 0%, #ddd 100%);
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  height: 470px;
-  padding: 16px;
-  width: 300px;
+  height: auto; /* Laisser la hauteur s'ajuster à son contenu */
+  padding: 20px;
+  width: 320px;
+  margin: 40px auto; /* Ajouter une marge en haut et centrer horizontalement */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.pokemon-page:hover {
+  transform: scale(1.05);
 }
 
 .pokemon-image {
