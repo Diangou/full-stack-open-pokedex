@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
   entry: "./src/index.jsx",
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),  // 🔥 Change 'dist' en 'build' pour le déploiement Vercel
     filename: 'bundle.js',
     publicPath: '/'
   },
@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader'],  // ⚠ Correction de `loaders` en `use`
       }
     ],
   },
@@ -40,7 +40,7 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: "./public/index.html",
-      filename: "./index.html",
+      filename: "index.html", // 🔥 Correction du chemin
     }),
   ],
 };
